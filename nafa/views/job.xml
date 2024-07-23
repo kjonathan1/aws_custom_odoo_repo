@@ -1,4 +1,4 @@
-?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Entree de stovk -->
     <record id="nafajob_view_form" model="ir.ui.view">
@@ -7,22 +7,22 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="_open" string="Open" type="object" class="btn-primary" states="draft"/>
-                    <button name="_draft" string="Draft" type="object" class="btn-primary" states="open"/>
-                    <button name="_close" string="Close" type="object" class="btn-primary" states="open"/>
+                    <button name="make_open" string="Open" type="object" class="btn-primary" invisible="state not in ('draft', 'close')"/>
+                    <button name="make_draft" string="Draft" type="object" class="btn-primary" invisible="state not in ('open', 'close')"/>
+                    <button name="make_close" string="Close" type="object" class="btn-primary" invisible="state not in ('draft', 'open')"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
                 </header>
                 <group>
                     <group>
                         <field name="name"/>
-                        <field name="start_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="end_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="position" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="start_date" readonly="state not in ('draft')"/>
+                        <field name="end_date" readonly="state not in ('draft')"/>
+                        <field name="position" readonly="state not in ('draft')"/>
                     </group>
                     <group>
-                        <field name="category" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="experience" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        <field name="description" attrs="{'readonly': [('state', '!=', 'draft')]}"/> 
+                        <field name="category" readonly="state not in ('draft')"/>
+                        <field name="experience" readonly="state not in ('draft')"/>
+                        <field name="description" readonly="state not in ('draft')"/> 
                       
                     </group>
                 </group>

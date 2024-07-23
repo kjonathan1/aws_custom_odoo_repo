@@ -16,8 +16,9 @@
         'utm',
     ],
     'data': [
-        'security/ir.model.access.csv',
         'security/res_groups.xml',
+        'security/ir.model.access.csv',
+        # 'security/res_groups.xml',
         # 'security/ir_rules.xml',
 
         # 'report/account_invoice_report_views.xml',
@@ -32,5 +33,6 @@
     ],
     'demo': [],
     'installable': True,
+    'application': True,
     'license': 'LGPL-3',
 }

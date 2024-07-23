@@ -31,6 +31,13 @@ SALE_ORDER_STATE = [
 class NafaJob(models.Model):
     _name = "nafa.job"
     _description = "Job"
+
+    def make_draft(self):
+        self.write({'state':'draft'})
+    def make_open(self):
+        self.write({'state':'open'})
+    def make_close(self):
+        self.write({'state':'close'})
         
 
     @api.model
