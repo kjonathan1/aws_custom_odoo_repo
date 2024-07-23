@@ -20,6 +20,7 @@
                         <field name="position" readonly="state not in ('draft')"/>
                     </group>
                     <group>
+                        <field name="salary_range" readonly="state not in ('draft')"/>
                         <field name="category" readonly="state not in ('draft')"/>
                         <field name="experience" readonly="state not in ('draft')"/>
                         <field name="description" readonly="state not in ('draft')"/> 
@@ -40,6 +41,7 @@
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="position"/>
+                     <field name="salary_range"/>
                     <field name="category"/>
                     <field name="state"/> 
                 </tree>

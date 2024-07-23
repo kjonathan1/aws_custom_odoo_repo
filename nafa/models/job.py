@@ -51,6 +51,7 @@ class NafaJob(models.Model):
     end_date = fields.Date(string="Closing date", required=True,)
     name = fields.Char(string="Reference" , readonly=True)
     position = fields.Char(string="Position")
+    salary_range = fields.Char(string="Salary")
     experience = fields.Char(string="Experience")
     description = fields.Char(string="Description")
     category = fields.Selection([('job','Job'), ('internship','Internship'),('trainig','Trainig')], string='Category', readonly=True, default='job')
