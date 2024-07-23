@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menus  -->
+        <menuitem id="nafa" name="NAFA" sequence="150" web_icon="nafa,static/description/icon.png"/>
+            <menuitem id="job" name="Job" parent="nafa"  sequence="5" action="action_nafajob"/>
+            
+
+
+ 
+     </data>
+
+</odoo>

@@ -1,0 +1,57 @@
+?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Entree de stovk -->
+    <record id="nafajob_view_form" model="ir.ui.view">
+        <field name="name">nafa.job.form</field>
+        <field name="model">nafa.job</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="_open" string="Open" type="object" class="btn-primary" states="draft"/>
+                    <button name="_draft" string="Draft" type="object" class="btn-primary" states="open"/>
+                    <button name="_close" string="Close" type="object" class="btn-primary" states="open"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="end_date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="position" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </group>
+                    <group>
+                        <field name="category" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="experience" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        <field name="description" attrs="{'readonly': [('state', '!=', 'draft')]}"/> 
+                      
+                    </group>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="nafajob_tree_view" model="ir.ui.view">
+            <field name="name">nafa.job.tree</field>
+            <field name="model">nafa.job</field>
+            <field name="arch" type="xml">
+                <tree string="JOB">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="position"/>
+                    <field name="category"/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_nafajob">
+        <field name="name">JOB</field>
+        <field name="res_model">nafa.job</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nafajob_tree_view"/>
+        <field name="help" type="html">
+            <p>Create new job</p>
+        </field>
+    </record>
+</odoo>

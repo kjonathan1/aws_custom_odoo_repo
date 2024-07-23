@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <!-- Sequences for nafa.job -->
+        <record id="seq_job" model="ir.sequence">
+            <field name="name">Job</field>
+            <field name="code">nafa.job</field>
+            <field name="prefix">REF</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+
+</odoo>
