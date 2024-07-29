@@ -2,12 +2,30 @@
 <odoo noupdate="1">
 
     <!-- Sequences for nafa.job -->
-        <record id="seq_job" model="ir.sequence">
-            <field name="name">Job</field>
-            <field name="code">nafa.job</field>
-            <field name="prefix">REF</field>
-            <field name="padding">5</field>
-            <field name="company_id" eval="False"/>
-        </record>
+    <record id="seq_job" model="ir.sequence">
+        <field name="name">Job</field>
+        <field name="code">nafa.job</field>
+        <field name="prefix">REF</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+     <!-- Sequences for nafa.event -->
+    <record id="seq_event" model="ir.sequence">
+        <field name="name">Event</field>
+        <field name="code">nafa.event</field>
+        <field name="prefix">REF-EVENT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
+     <!-- Sequences for nafa.contract -->
+    <record id="seq_contract" model="ir.sequence">
+        <field name="name">Contract</field>
+        <field name="code">nafa.contract</field>
+        <field name="prefix">REF-CONTRACT</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
 
 </odoo>

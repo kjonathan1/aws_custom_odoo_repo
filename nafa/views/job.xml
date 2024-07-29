@@ -56,4 +56,116 @@
             <p>Create new job</p>
         </field>
     </record>
+
+    <!-- Event -->
+    <record id="nafaevent_view_form" model="ir.ui.view">
+        <field name="name">nafa.event.form</field>
+        <field name="model">nafa.event</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_open" string="Open" type="object" class="btn-primary" invisible="state not in ('draft', 'close')"/>
+                    <button name="make_draft" string="Draft" type="object" class="btn-primary" invisible="state not in ('open', 'close')"/>
+                    <button name="make_close" string="Close" type="object" class="btn-primary" invisible="state not in ('draft', 'open')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date" readonly="state not in ('draft')"/>
+                        <field name="end_date" readonly="state not in ('draft')"/>
+                        <field name="description" readonly="state not in ('draft')"/>
+                    </group>
+                    <group>
+                        <field name="location" readonly="state not in ('draft')"/>
+                        <field name="category" readonly="state not in ('draft')"/>
+                        <field name="link" readonly="state not in ('draft')"/>
+                        <field name="price" readonly="state not in ('draft')"/> 
+                        <field name="image" readonly="state not in ('draft')"/> 
+                      
+                    </group>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="nafaevent_tree_view" model="ir.ui.view">
+            <field name="name">nafa.event.tree</field>
+            <field name="model">nafa.event</field>
+            <field name="arch" type="xml">
+                <tree string="Event">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="location"/>
+                    <field name="price"/>
+                    <field name="category"/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_nafaevent">
+        <field name="name">Event</field>
+        <field name="res_model">nafa.event</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nafaevent_tree_view"/>
+        <field name="help" type="html">
+            <p>Create new event</p>
+        </field>
+    </record>
+
+    <!-- Contract -->
+    <record id="nafacontract_view_form" model="ir.ui.view">
+        <field name="name">nafa.contract.form</field>
+        <field name="model">nafa.contract</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_open" string="Open" type="object" class="btn-primary" invisible="state not in ('draft', 'close')"/>
+                    <button name="make_draft" string="Draft" type="object" class="btn-primary" invisible="state not in ('open', 'close')"/>
+                    <button name="make_close" string="Close" type="object" class="btn-primary" invisible="state not in ('draft', 'open')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,open,close"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="start_date" readonly="state not in ('draft')"/>
+                        <field name="end_date" readonly="state not in ('draft')"/>
+                        <field name="description" readonly="state not in ('draft')"/>
+                    </group>
+                    <group>
+                        <field name="category" readonly="state not in ('draft')"/>
+                        <field name="link" readonly="state not in ('draft')"/>
+                       <field name="pdf_document" filename="pdf_document_filename"/>  <!-- PDF field -->
+                    </group>
+                </group>
+                
+            </form>
+        </field>
+    </record>
+
+    <record id="nafacontract_tree_view" model="ir.ui.view">
+            <field name="name">nafa.contract.tree</field>
+            <field name="model">nafa.contract</field>
+            <field name="arch" type="xml">
+                <tree string="Contract">
+                    <field name="name"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                   <field name="category"/>
+                    <field name="state"/> 
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_nafacontract">
+        <field name="name">Contract</field>
+        <field name="res_model">nafa.contract</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nafacontract_tree_view"/>
+        <field name="help" type="html">
+            <p>Create new Contract</p>
+        </field>
+    </record>
+
 </odoo>

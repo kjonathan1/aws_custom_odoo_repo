@@ -1,3 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 nafajob_admin,nafa.job.admin,model_nafa_job,group_nafa_admin,1,1,1,1
 nafajob_gerant,nafa.job.gerant,model_nafa_job,group_nafa_gerant,1,1,1,0
+
+nafaevent_admin,nafa.event.admin,model_nafa_event,group_nafa_admin,1,1,1,1
+nafaevent_gerant,nafa.event.gerant,model_nafa_event,group_nafa_gerant,1,1,1,0
+
+nafacontract_admin,nafa.contract.admin,model_nafa_contract,group_nafa_admin,1,1,1,1
+nafacontract_gerant,nafa.contract.gerant,model_nafa_contract,group_nafa_gerant,1,1,1,0
+

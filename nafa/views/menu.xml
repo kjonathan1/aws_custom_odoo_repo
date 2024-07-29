@@ -4,6 +4,8 @@
         <!-- Menus  -->
         <menuitem id="nafa" name="NAFA" sequence="150" web_icon="nafa,static/description/icon.png"/>
             <menuitem id="job" name="Job" parent="nafa"  sequence="5" action="action_nafajob"/>
+            <menuitem id="event" name="Event" parent="nafa"  sequence="6" action="action_nafaevent"/>
+            <menuitem id="contract" name="Contract" parent="nafa"  sequence="7" action="action_nafacontract"/>
             
 
 
