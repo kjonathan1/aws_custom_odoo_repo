@@ -24,7 +24,7 @@
                         <field name="category" readonly="state not in ('draft')"/>
                         <field name="experience" readonly="state not in ('draft')"/>
                         <field name="description" readonly="state not in ('draft')"/> 
-                      
+                        <!-- <field name="apply_phone_number" readonly="state not in ('draft')"/>  -->
                     </group>
                 </group>
                 
@@ -165,6 +165,54 @@
         <field name="view_id" ref="nafacontract_tree_view"/>
         <field name="help" type="html">
             <p>Create new Contract</p>
+        </field>
+    </record>
+
+    <!-- JobFavorite -->
+    <record id="nafajobfavorite_tree_view" model="ir.ui.view">
+            <field name="name">nafa.jobfavorite.tree</field>
+            <field name="model">nafa.jobfavorite</field>
+            <field name="arch" type="xml">
+                <tree string="Favorite Job">
+                    <field name="user_id"/>
+                    <field name="job_id"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_nafajobfavorite">
+        <field name="name">Favorite Job</field>
+        <field name="res_model">nafa.jobfavorite</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nafajobfavorite_tree_view"/>
+        <field name="help" type="html">
+            <p>Create new job favorite</p>
+        </field>
+    </record>
+
+     <!-- jobapplication -->
+    <record id="nafajobapplication_tree_view" model="ir.ui.view">
+            <field name="name">nafa.jobapplication.tree</field>
+            <field name="model">nafa.jobapplication</field>
+            <field name="arch" type="xml">
+                <tree string="Job application">
+                    <field name="name"/>
+                    <field name="application_date"/>
+                    <field name="applicant_phone_number"/>
+                    <field name="applicant_email"/>
+                    <field name="user_id"/>
+                    <field name="job_id"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_nafajobapplication">
+        <field name="name">Job application</field>
+        <field name="res_model">nafa.jobapplication</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="nafajobapplication_tree_view"/>
+        <field name="help" type="html">
+            <p>Create new Job Application</p>
         </field>
     </record>
 

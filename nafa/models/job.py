@@ -54,11 +54,14 @@ class NafaJob(models.Model):
     salary_range = fields.Char(string="Salary")
     experience = fields.Char(string="Experience")
     link = fields.Char(string="Link")
+    # apply_phone_number = fields.Char(string="Apply phone number")
+    user_id = fields.Char(string='User',)
     description = fields.Char(string="Description")
     category = fields.Selection([('job','Job'), ('internship','Internship'),('trainig','Trainig')], string='Category', readonly=True, default='job')
     state = fields.Selection([('draft','Draft'), ('open','Open'),('close','Close')], string='Etat', readonly=True, default='draft')
        
-
+# use a form for user to apply instead of giving them possibility to send via whatsapp
+#
 class NafaEvent(models.Model):
     _name = "nafa.event"
     _description = "Event and Training"
@@ -119,3 +122,35 @@ class NafaContract(models.Model):
     pdf_document_filename = fields.Char(string="PDF Filename")  # New field to store the filename
     category = fields.Selection([('public','Public'),('private','Private')], string='Category', readonly=True, default='public')
     state = fields.Selection([('draft','Draft'), ('open','Open'),('close','Close')], string='Etat', readonly=True, default='draft')
+
+
+class NafaJobFavorite(models.Model):
+    _name = 'nafa.jobfavorite'
+    _description = 'Job Favorites'
+
+    user_id = fields.Char(string='User',)
+    job_id = fields.Many2one('nafa.job', string='Job', required=True)
+    active = fields.Boolean(default=True)
+
+
+class NafaJobApplication(models.Model):
+    _name = 'nafa.jobapplication'
+    _description = 'Job Application'
+
+    @api.model
+    def create(self, vals):
+        sequence = self.env['ir.sequence'].next_by_code('nafa.jobapplication') or _('New')
+        vals['name'] = sequence
+        result = super(NafaJobApplication, self).create(vals)
+        return result
+
+    name = fields.Char(string="Reference" , readonly=True)
+    user_id = fields.Char(string='User',)
+    job_id = fields.Many2one('nafa.job', string='Job', required=True)
+    active = fields.Boolean(default=True)
+    application_date = fields.Date(string="Application date", )
+    applicant_phone_number = fields.Char(string="Applicant phone number")
+    applicant_email = fields.Char(string="Applicant email")
+    applicant_message = fields.Char(string='Applicant Resume',)
+    pdf_document = fields.Binary(string="PDF Document", attachment=True)  # New PDF field
+    pdf_document_filename = fields.Char(string="PDF Filename")  # New field to store the filename

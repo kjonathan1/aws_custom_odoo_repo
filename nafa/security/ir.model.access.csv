@@ -8,3 +8,8 @@ nafaevent_gerant,nafa.event.gerant,model_nafa_event,group_nafa_gerant,1,1,1,0
 nafacontract_admin,nafa.contract.admin,model_nafa_contract,group_nafa_admin,1,1,1,1
 nafacontract_gerant,nafa.contract.gerant,model_nafa_contract,group_nafa_gerant,1,1,1,0
 
+nafajobfavorite_admin,nafa.jobfavorite.admin,model_nafa_jobfavorite,group_nafa_admin,1,1,1,1
+nafajobfavorite_gerant,nafa.jobfavorite.gerant,model_nafa_jobfavorite,group_nafa_gerant,1,1,1,0
+
+nafajobapplication_admin,nafa.jobapplication.admin,model_nafa_jobapplication,group_nafa_admin,1,1,1,1
+nafajobapplication_gerant,nafa.jobapplication.gerant,model_nafa_jobapplication,group_nafa_gerant,1,1,1,0

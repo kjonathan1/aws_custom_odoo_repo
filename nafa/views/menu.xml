@@ -6,6 +6,8 @@
             <menuitem id="job" name="Job" parent="nafa"  sequence="5" action="action_nafajob"/>
             <menuitem id="event" name="Event" parent="nafa"  sequence="6" action="action_nafaevent"/>
             <menuitem id="contract" name="Contract" parent="nafa"  sequence="7" action="action_nafacontract"/>
+            <menuitem id="jobfavorite" name="Job fovorite" parent="nafa"  sequence="8" action="action_nafajobfavorite"/>
+            <menuitem id="jobapplication" name="Job application" parent="nafa"  sequence="9" action="action_nafajobapplication"/>
             
 
 

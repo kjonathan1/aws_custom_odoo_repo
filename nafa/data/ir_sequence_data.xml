@@ -28,4 +28,14 @@
         <field name="company_id" eval="False"/>
     </record>
 
+
+     <!-- Sequences for nafa.jobapplication -->
+    <record id="seq_jobapplication" model="ir.sequence">
+        <field name="name">jobapplication</field>
+        <field name="code">nafa.jobapplication</field>
+        <field name="prefix">REF-APPLY</field>
+        <field name="padding">5</field>
+        <field name="company_id" eval="False"/>
+    </record>
+
 </odoo>
