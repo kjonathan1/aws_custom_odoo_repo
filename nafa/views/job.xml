@@ -24,7 +24,7 @@
                         <field name="category" readonly="state not in ('draft')"/>
                         <field name="experience" readonly="state not in ('draft')"/>
                         <field name="description" readonly="state not in ('draft')"/> 
-                        <!-- <field name="apply_phone_number" readonly="state not in ('draft')"/>  -->
+                        <field name="user_id" readonly="state not in ('draft')"/> 
                     </group>
                 </group>
                 
@@ -41,8 +41,9 @@
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="position"/>
-                     <field name="salary_range"/>
+                    <field name="salary_range"/>
                     <field name="category"/>
+                    <field name="user_id"/>
                     <field name="state"/> 
                 </tree>
             </field>
