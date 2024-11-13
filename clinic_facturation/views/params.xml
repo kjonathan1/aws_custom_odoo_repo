@@ -18,9 +18,9 @@
                 </group>
                 
             </xpath>
-            <field name="taxes_id" position="replace">
+            <!-- <field name="taxes_id" position="replace">
                 <field name="taxes_id" invisible="1"/>
-            </field> 
+            </field>  -->
             <field name="list_price" position="replace">
                 <field name="list_price" invisible="1"/>
             </field> 
