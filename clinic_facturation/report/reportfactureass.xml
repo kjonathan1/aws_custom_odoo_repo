@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/clinic/static/src/css/clinic.css"/>
+		</xpath>
+    </template>
+
+    <template id="factureass">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="5"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            <t t-foreach="docs" t-as="o">
+				<t t-set="o" t-value="o.with_context(lang=user.lang)" />
+                <t t-call="web.basic_layout">
+                    <div class="page container">
+                        <div>- entete ici - </div>
+                       
+                        <div class="card">
+                            <div class="card-header">
+                                <strong><h3>Facrure Assurance N° <span t-esc="o.name" /></h3></strong>
+                            </div>
+                        </div>
+                        <br/> 
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 50%">
+                                    <span>Assurance:</span> <strong><span t-esc="o.assurance.name" /></strong> <br/>
+                                    <span>Télephone:</span> <strong><span t-esc="o.assurance.phone" /></strong>
+                                </td>
+                                <td style="width: 50%">
+                                    <span>Periode du :</span> <strong><span t-field="o.debut"/></strong> au <strong><span t-field="o.fin"/></strong><br/>
+                                    <span>Etat:</span><strong><span t-field="o.state"/></strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th><strong>Ref-caisse</strong></th>
+                                    <th><strong>Patient</strong></th>
+                                    <th><strong>Code</strong></th>
+                                    <th><strong>Telephone</strong></th>
+                                    <th><strong>N° Fiche</strong></th>
+                                    <th><strong>Prestation</strong></th>
+                                    <th><strong>Montant</strong></th>
+                                    <th><strong>Ass.(%)</strong></th>
+                                    <th><strong>Mt Assurance</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.ligne_factureass" t-as="l">
+                                    <tr>
+                                        <td><span t-esc="l.evaluation.name" /></td>
+                                        <td><span t-esc="l.patient.name" /> </td>
+                                        <td><span t-esc="l.reference" /> </td>
+                                        <td><span t-esc="l.telephone" /> </td>
+                                        <td><span t-esc="l.numficheas" /> </td>
+                                        <td><span t-esc="l.prestation" /> </td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.montant).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.tauxass).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.montantass).replace(',', ' ').replace('.', ',')"/></td>                    
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="7"><strong>Total</strong></td>
+                                    <td colspan="2" align="right"><strong><span t-esc="'{:,.0f}'.format(o.montantth).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <br/>
+                        <div>Arrêté, le présent reçu à la somme de  <span t-esc="user.company_id.compute_amount_text(o.montantth)" /> (<span t-esc="'{:,.0f}'.format(o.montantth).replace(',', ' ').replace('.', ',')"/>) FCFA</div>
+                        <br/>
+                        
+                        <br/>
+                
+                        <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong></strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong>Service Comptabilite</strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong>Contacts clinique: 65.67.10.10 / 70.00.10.30</strong><br/>
+                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

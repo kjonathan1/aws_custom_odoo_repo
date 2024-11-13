@@ -1,0 +1,108 @@
+<odoo>
+    <template id="templates">
+        <t t-name="gestion_marches.templates">
+            <xpath expr="//head" position="inside">
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+                <link href="/gestion_marches/static/src/css/style.css" rel="stylesheet"/>
+            </xpath>
+          
+            <div id="body">
+                <nav class="navbar">
+                    <a id="nom">OPPORTUNE</a>
+                    <!-- Ajouter une classe active à l'élément correspondant à la page courante -->
+                    <a t-attf-class="lien #{'active' if request.httprequest.path == '/gestion_marches/templates' else ''}" href="/templates">Accueil</a>
+                    <a t-attf-class="lien #{'active' if request.httprequest.path == 'http://localhost:8069/web/login' else ''}" href="http://localhost:8069/web/login">Se connecter</a>
+                    <a t-attf-class="lien #{'active' if request.httprequest.path == '/contact' else ''}" href="/contact">Contacts</a>
+                </nav>
+
+                <div>
+                    <form action="/gestion_marches/templates" method="get" style="display: flex; justify-content: center; margin-top: 20px;" >
+                        <input type="text" name="type_marche" placeholder="Rechercher par type de marche (Travaux, Prestations intellectuelles, Fournitures et services courants)" style="width: 500px; height: 40px; padding: 10px; font-size: 16px; background-color: #D9D9D9;" />
+                        <button type="submit" style="font-size: 16px; background-color: #023047; color: white; height: 40px; width: 100px;">Rechercher</button>
+                    </form>
+                </div>
+                <div class="wrapper">
+
+                    <div class="row d-flex" style="flex-wrap: wrap; gap: 20px; display: flex; align-items: center;">
+                            <!-- Boucle pour chaque marché -->
+                        <t t-foreach="marches" t-as="marche">
+                            <div class="col-md-4 mb-4 d-flex align-items: center; margin-left: 30px;">
+                                <div class="card h-100" style="width:400px; background-color: #023047; height: 294px; gap: 50px;">
+                                    <div class="card-body" style="background-color: #D9D9D9; width:375px; height: 274px; display: flex; flex-direction: column; gap: 20px;">
+                                        <h5 class="card-title" style="border-bottom: 1px solid #023047; padding-bottom: 10px; margin-bottom: 10px; font-size: 16px;"><t t-esc="marche.libelle"/></h5>
+                                        <p class="card-text">
+                                            <i class="fas fa-map-marker-alt" style='font-size: 20px; color:blue;' ></i> <!-- Icon for location -->
+                                            <t t-esc="marche.localite"/>
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fas fa-building"></i> <!-- Icon for institution -->
+                                            <t t-esc="marche.institution_id.name"/>
+                                        </p>
+                                        <p class="card-text">
+                                            <i class="fas fa-file-alt"></i> <!-- Icon for market type -->
+                                            <t t-esc="marche.type_marche_id.name"/>
+                                        </p>
+                                        <p class="card-text" style="color: green;">
+                                            <i class="fas fa-calendar-alt" ></i> <!-- Icon for expiration date -->
+                                            Expire le <t t-esc="marche.date_expiration.strftime('%d/%m/%Y')"/>
+                                        </p>
+                                        <div class="fichier">
+                                            <p class="card-text"></p>
+                                            <ul>
+                                                <t t-foreach="marche.attachment_ids" t-as="attachment">
+                                                    <li>
+                                                        <a t-att-href="'/web/content/' + str(attachment.id) + '?download=true'" target="_blank">
+                                                            <i class="fas fa-paperclip"></i> <t t-esc="attachment.name"/>
+                                                        </a>
+                                                    </li>
+                                                </t>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <div id="image" >
+                        <div id="img1">
+                            <img t-att-src="'/gestion_marches/static/src/img/img3.jpg'" alt="Description de l'image" style="width: 300px; height: 294px; margin-left: 70px;" />
+                        </div>
+                        <div id="img2">
+                            <img t-att-src="'/gestion_marches/static/src/img/img2.jpg'" alt="Description de l'image" style="width: 300px; height:294px; margin-top: 20px; margin-left: 70px;" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="o_footer o_footer_standard">
+                <div class="footer1">
+                    <div class="row" style="display: flex; align-items: center; justify-content-around; gap: 30px;">
+                        <div class="col-md-3" style="flex:1; margin-left: 30px; color: white; margin-bottom: 15px; font-size: 20px; font-weight: bold; margin-top: -30px;">
+                            <h4>OPPORTUNE</h4>
+                        </div>
+                        <div class="col-md-3" style="flex:1;">
+                            <h4 class="contact" style="color: white; margin-bottom: 15px; font-size: 20px; margin-top: -20px;">Contact</h4>
+                            <ul class="contacts" style="font-size: 18px; ">
+                                <li>Email: contact@opportune.com</li>
+                                <li>Téléphone: +226 68 54 75 66</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3" style="flex:1; ">
+                            <h4 class="apropos" style="color: white; margin-bottom: 15px; font-size: 20px; margin-top: 20px;">À propos de nous</h4>
+                            <ul>
+                                <p class="propos" style="margin-right: 30px; font-size: 16px; ">
+                                    Situés à Pissy, Ouagadougou,
+                                    nous sommes une équipe dédiée à faciliter
+                                    l’accès aux appels d’offres pour les
+                                    entreprises et les entrepreneurs de notre pays
+                                    Notre mission est de centraliser et de diffuser les informations sur les appels d’offres publics et privés.
+                                </p>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>    
+             
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,32 @@
+.o_footer_standard {
+    background-color: #023047; 
+    color: #d1d1d1; 
+    height: 200px;
+}
+.o_footer_standard p, .o_footer_standard ul, .o_footer_standard li {
+    color: #d1d1d1; 
+    font-size: 14px; 
+    line-height: 1.5;
+}
+
+.o_footer_standard ul {
+    padding: 0;
+    list-style: none;
+}
+
+.o_footer_standard ul li {
+    margin-bottom: 3px;
+}
+
+.o_footer_standard a {
+    color: #d1d1d1; 
+    text-decoration: none;
+}
+
+.o_footer_standard a:hover {
+    color: white; 
+}
+.footer1 ul {
+    list-style-type: none; 
+    padding: 0;
+}

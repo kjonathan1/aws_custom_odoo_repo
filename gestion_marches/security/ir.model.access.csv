@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_gestion_marches_admin,gestion_marches.marche.admin,model_gestion_marches_marche,base.group_system,1,1,1,1
+access_gestion_domaines_admin,gestion_marches.domaine.admin,model_gestion_marches_domaine,base.group_system,1,1,1,1
+access_gestion_type_marches_admin,gestion_marches.type_marche.admin,model_gestion_marches_type_marche,base.group_system,1,1,1,1
+access_gestion_institutions_admin,gestion_marches.institution.admin,model_gestion_marches_institution,base.group_system,1,1,1,1
+access_gestion_devises_admin,gestion_marches.devise.admin,model_gestion_marches_devise,base.group_system,1,1,1,1
+access_gestion_institution_domains_admin,gestion_marches.institution_domain.admin,model_gestion_marches_institution_domain,base.group_system,1,1,1,1
+access_gestion_object_admin,gestion_marches.object.admin,model_gestion_marches_object,base.group_system,1,1,1,1
+
+access_gestion_users_admin,gestion_marches.user.admin,model_gestion_marches_user,base.group_system,1,1,1,1

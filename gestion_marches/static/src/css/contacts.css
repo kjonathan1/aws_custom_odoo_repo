@@ -1,0 +1,120 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.navbar {
+    background-color: #023047;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+#nom {
+    font-size: 20px;
+    font-weight: bold;
+    color: white; 
+    margin-left: 30px;
+    margin-right: auto;
+}
+.lien {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 0 10px; /* Espace horizontal entre les liens */
+    padding: 5px 10px;
+}
+.o_contact {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff9e5;
+    padding: 20px;
+}
+
+
+.o_contact_left {
+    flex: 1;
+    padding-right: 15px;
+    margin-left: 10px;
+}
+
+.o_contact_left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.o_contact_left ul li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.o_contact_left .icon {
+    margin-right: 10px;
+    font-size: 25px;
+    color: #0B83BE;
+}
+
+.o_contact_right {
+    flex: 2;
+}
+
+.o_contact_right form input,
+.o_contact_right form textarea {
+    width: calc(50% - 10px);
+    margin: 5px 5px 15px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.o_contact_right form textarea {
+    width: 100%;
+    height: 100px;
+}
+
+.o_contact_right form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.o_footer_standard {
+    background-color: #023047; 
+    color: #d1d1d1; 
+}
+.o_footer_standard p, .o_footer_standard ul, .o_footer_standard li {
+    color: #d1d1d1; 
+    /* line-height: 1.5; */
+}
+
+.o_footer_standard ul {
+    padding: 0;
+    list-style: none;
+}
+
+.o_footer_standard ul li {
+    margin-bottom: 3px;
+   
+}
+
+.o_footer_standard a {
+    color: #d1d1d1; 
+    text-decoration: none;
+}
+
+.o_footer_standard a:hover {
+    color: white; 
+}
+.footer1 ul {
+    list-style-type: none; 
+    padding: 0;
+}
+ 
+.lien.active {
+    font-weight: bold;
+    border: 2px solid #FEFAE0;
+    border-radius: 5px;
+}  

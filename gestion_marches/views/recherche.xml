@@ -1,0 +1,345 @@
+<odoo>
+    <template id="recherche">
+        <t t-name="gestion_marches.recherche">
+        <style>
+            .navbar2 {
+                background-color: white;
+                text-decoration: none;
+                padding: 10px 20px; 
+                display: flex;
+                justify-content: center; 
+                align-items: center; 
+                height: 60px; 
+                border-bottom: 2px solid #444;
+                font-size: 20px; 
+            }
+            .navbar2 a {
+                color: black; 
+                text-decoration: none; 
+                margin: 0 15px; 
+                font-size: 30px; 
+                font-weight: bold;
+            }
+            .connecter {
+                margin-left: 1000px;
+                color: white;
+                font-size: 18px;
+                text-decoration: none;
+            }
+
+            <!-- style pour l'image -->
+            #img1 {
+                background-image: url('/gestion_marches/static/src/img/img1.jpeg');
+                background-size: contain;
+                background-position: center; 
+                width: 100%;
+                height: 500px;
+            }
+            .lien {
+                    <!-- margin-left: 250px;
+                    margin-top: 20px; -->
+                    color: white;
+                    font-size: 18px;
+                    text-decoration: none;
+                    margin: 0 10px; /* Espace horizontal entre les liens */
+                    padding: 5px 10px;
+                    <!-- margin-right: 10px; -->
+                }
+                 
+                    <!-- style pour le recapitulatif -->
+                #regroupement {
+                    background-color: #FEFA0;
+                    width: 100%;
+                    height: 400px;
+                    margin-top: 30px;
+                    border: 1px solid #FEFA0;
+                    border-radius: 10px;
+                        
+                }
+                .titre {
+                    margin-bottom: 20px;
+                    height: 100px;
+                    background-color: white;
+                }
+                .titre:hover {
+                    background-color: #f8f9fa; 
+                    border-color: white; 
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+                    transform: scale(1.05);
+                }
+                .titre a {
+                    color: black; 
+                    text-decoration: none;
+                    padding: 10px 20px; 
+                    justify-content: center; 
+                    align-items: center; 
+                    font-size: 16px;
+                    margin-left: 200px; 
+                }
+                h2, h3, h4 {
+                    color: black; 
+                    margin-left: 300px;
+                    font-size: 30px;
+                    font-weight: bold;
+                    margin-top: 5px;  
+                }
+                <!-- .navbar a {
+                        color: white;
+                        text-decoration: none;
+                    } -->
+
+                <!-- #img1 {
+                    image: url('/gestion_marches/static/src/img/img1.jpeg'); -->
+                    <!-- background-image: url('/gestion_marches/static/src/img/img1.jpeg'); -->
+                    <!-- background-size: contain;
+                    background-position: center;  -->
+                    <!-- width: 100%; -->
+                    <!-- height: 500px; -->
+                <!-- } -->
+                 <!-- .footer-bottom {
+                    padding-top: 10px; 
+                    text-align: center;
+                    font-size: 14px;
+                    color: white;
+                    padding: 10px 0;
+                }
+                .footer1 {
+                    padding-bottom: 10px; /* Espace en bas de la partie supérieure */
+                    border-bottom: 1px solid white; /* Trait de séparation */
+                    padding: 20px;
+                } -->
+
+        </style>
+            <nav class="navbar2">
+                <a href="/templates">Accueil</a>
+                    <a href="/article">Nos articles</a>
+                    <a href="/contact">Contacts</a>
+            </nav>
+            <!-- Formulaire de recherche -->
+            <div style="display: flex; justify-content: center; margin: 20px;">
+                <form action="/gestion_marches/recherche" method="get" style="display: flex; width: 100%;">
+                    <input type="text" name="type_marche" placeholder="Rechercher par type de marche (travaux, prestations, fournitures)" style="width: 50%; padding: 10px; font-size: 16px;" />
+                    <button type="submit" style="padding: 10px 20px; margin-left: 10px; font-size: 16px;">Rechercher</button>
+                </form>
+            </div>
+            <div id="img1">
+            </div>
+
+             <div class="o_contact">
+                <div class="o_contact_left">
+                    <h3>CONTACTEZ-NOUS</h3>
+                    <ul>
+                        <li>
+                            <span class="icon">📍</span>
+                            <span>Adresse:</span>
+                            <p>Pissy, Ouagadougou, Burkina Faso</p>
+                        </li>
+                        <li>
+                            <span class="icon">📧</span>
+                            <span>Email:</span>
+                            <p>contact@esnformatic.com</p>
+                        </li>
+                        <li>
+                            <span class="icon">📞</span>
+                            <span>Téléphone:</span>
+                            <p>+226 60 60 55 15</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="o_contact_right">
+                    <form action="/contact">
+                        <input type="text" name="name" placeholder="Votre Nom" required="true"/>
+                        <input type="email" name="email" placeholder="Votre Email" required="true"/>
+                        <input type="text" name="subject" placeholder="Sujet" required="true"/>
+                        <textarea name="message" placeholder="Votre Message" ></textarea>
+                        <button type="submit" class="btn btn-primary">Envoyer Message</button>
+                    </form>
+                </div>
+            </div>
+             <!-- <div id="regroupement">
+                    <div class="titre">
+                        <h4>Types d'appels d'offres</h4>
+                            <a href="/public">Prestations intéllectuelles</a>
+                            <a href="/prive">Fournitures et services courants</a>
+                            <a href="/prive">Travaux</a>
+                    </div>
+                </div> -->
+
+            <h1 style="margin-left:300px;">Liste des appels d'offres de 
+            <span style="color: #007bff; font-weight: bold; font-style: italic;">Gestion_Marchés</span>
+            </h1>
+            <h1 style="margin-left:300px;">Liste des appels d'offres de 
+            <span style="color: #007bff; font-weight: bold; font-style: italic;">Gestion_Marchés</span>
+            </h1>
+            <div class="container">
+                <div class="row d-flex justify-content-start align-items-start" style="flex-wrap: wrap; gap: 50px; display: flex;">
+                    <!-- Boucle pour chaque marché -->
+                    <t t-foreach="marches" t-as="marche">
+                        <div class="col-md-4 mb-4 d-flex align-items-stretch">
+                            <div class="card h-100" style="width:400px; background-color: black;">
+                                <div class="card-body" style="background-color: #f8f9fa; width:398px;">
+                                    <h5 class="card-title"><t t-esc="marche.name"/></h5>
+                                    <p class="card-text">Nom: <t t-esc="marche.name"/></p>
+                                    <p class="card-text">Type de marché: <t t-esc="marche.type_marche_id.name"/></p>
+                                    <p class="card-text">Institution: <t t-esc="marche.institution_id.name"/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div id="regroupement">
+                    <div class="titre">
+                        <h2>Domaines d'appels d'offres</h2>
+                            <a href="/informatique">Informatiques</a>
+                            <a href="/statistique">Statistiques</a>
+                            <a href="/sante">Santé</a>
+                    </div>
+                    <div class="titre">
+                        <h3>Natures d'appels d'offres</h3>
+                            <a href="/prestation">Prestations fournies</a>
+                            <a href="/juridique">Juridique</a>
+                    </div>
+                    <div class="titre">
+                        <h4>Types d'appels d'offres</h4>
+                            <a href="/public">Prestations intéllectuelles</a>
+                            <a href="/prive">Fournitures et services courants</a>
+                            <a href="/prive">Travaux</a>
+                    </div>
+            </div>
+            <footer class="o_footer o_footer_standard">
+                <div class="footer1">
+                    <div class="row" style="display: flex; align-items: center; justify-content-around; gap: 50px;">
+                        <div class="col-md-3" style="flex:1; ">
+                            <h4>Opportune</h4>
+                            <ul>
+                                <li><a href="/templates">Accueil</a></li>
+                                <li><a href="/login">Se connecter</a></li>
+                                <li><a href="/contact">Contacts</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3" style="flex:1;">
+                            <h4>À propos de nous</h4>
+                            <ul>
+                                <li>Découvrir de nouvelles opprtunités, </li>
+                                <li>Optimiser les démarches,</li>
+                                <li>Se connecter avec des clients potentiels.</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3" style="flex:1;">
+                            <h4>Contact</h4>
+                            <ul>
+                                <li>Email: contact@opportune.com</li>
+                                <li>Téléphone: +226 68 54 75 66</li>
+                                <li>Pissy, Ouagadougou, Burkina Faso</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                <p>© 2024 OPPORTUNE. Tous droits réservés.</p>
+                </div>
+            </footer>   
+        </t>
+    </template>
+</odoo>
+ * {
+                    margin: 0;
+                    padding: 0;
+                }
+            
+                #body {
+                    background-color: #FEFAE0;
+                    height: 900px;
+                }
+                
+
+                .card:hover {
+                    background-color: blue; 
+                    border-color: #007bff;
+                    
+                }
+                .card-body {
+                    padding: 10px;
+                }
+
+                 .card-body:hover {
+                    background-color: blue; 
+                    boder: 1px solid black;
+                    boder-radius: 5px; 
+                    transform: scale(1.05);
+                    padding: 10px; 
+                }
+               <!-- style pour le navbar -->
+                .navbar {
+                    background-color: #023047;
+                    height: 60px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 20px;
+                }
+                #nom {
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: white; 
+                    margin-left: 30px;
+                    margin-right: auto;
+                }
+                .lien {
+                    color: white;
+                    font-size: 18px;
+                    text-decoration: none;
+                    margin: 0 10px; /* Espace horizontal entre les liens */
+                    padding: 5px 10px;
+                }
+                <!-- style pour le footer -->
+                .o_footer_standard {
+                    background-color: #023047; 
+                    color: #d1d1d1; 
+                    height: 200px;
+                }
+                .o_footer_standard p, .o_footer_standard ul, .o_footer_standard li {
+                    color: #d1d1d1; 
+                    font-size: 14px; 
+                    line-height: 1.5;
+                }
+
+                .o_footer_standard ul {
+                    padding: 0;
+                    list-style: none;
+                }
+
+                .o_footer_standard ul li {
+                    margin-bottom: 3px;
+                }
+
+                .o_footer_standard a {
+                    color: #d1d1d1; 
+                    text-decoration: none;
+                }
+
+                .o_footer_standard a:hover {
+                    color: white; 
+                }
+                .footer1 ul {
+                    list-style-type: none; /* Supprimer les puces des listes */
+                    padding: 0;
+                }
+                <!-- Activer la page actuelle -->
+                .lien.active {
+                    font-weight: bold;
+                    border: 2px solid #FEFAE0;
+                    border-radius: 5px;
+                } 
+
+                .wrapper {
+                    display: grid;
+                    grid-template-columns: 2fr 1fr;
+                    margin-top: 30px;
+                    margin-left: 30px;
+
+                }
+                .fichier ul {
+                     list-style-type: none;
+                }

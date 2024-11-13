@@ -1,0 +1,14 @@
+jour 1
+prefoir un champ email pour le patient et le medecin
+mettre les champ required ulteriurement
+verifier assureur
+
+avoir un etat propre a facture assurance pour suivre l'edition de la facture et son paiement.
+
+une
+
+Ajouter taux d'assurance dans la rebrique des assurance
+
+permettre de voir directement le module hopital apres une mise a jour
+
+HERITER LA VU PRODUIT POUR RETIRER LE CHAMP TAUX ET AJOUTER LE CHAMP PRIX assurance

@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <!--  Menus   -->
+        <menuitem id="gestion_marches" name="GESTION_MARCHES" sequence="150" web_icon="gestion_marches,static/description/icon.png"/>
+        <menuitem id="marche" name="MARCHES" parent="gestion_marches" sequence="1" action="action_marche"/>
+        <menuitem id="Domaine" name="Domaine" parent="gestion_marches" sequence="2" action="action_domaine"/>
+        <menuitem id="type_marche" name="Type_marche" parent="gestion_marches" sequence="3" action="action_type_marche"/>
+        <menuitem id="institution" name="Institution" parent="gestion_marches" sequence="4" action="action_institution"/>
+        <menuitem id="devise" name="Devise" parent="gestion_marches" sequence="5" action="action_devise"/>
+        <menuitem id="institution_domain" name="Institution_domain" parent="gestion_marches" sequence="6" action="action_institution_domain"/>
+        <menuitem id="object" name="Object" parent="gestion_marches" sequence="7" action="action_object"/>
+         
+         
+         <!-- Nouveau sous-menu pour "UTILISATEURS" -->
+        <menuitem id="user" name="USERS" parent="gestion_marches" sequence="8" action="action_user"/>
+
+        <!-- Sous-menus pour "UTILISATEURS" -->
+        <!-- <menuitem id="utilisateurs_liste" name="Liste des utilisateurs" parent="utilisateurs" sequence="1" action="action_utilisateurs_liste"/>
+
+        <menuitem id="utilisateurs_roles" name="Gestion des rôles" parent="utilisateurs" sequence="2" action="action_utilisateurs_roles"/>
+
+        <menuitem id="utilisateurs_permissions" name="Permissions des utilisateurs" parent="utilisateurs" sequence="3" action="action_utilisateurs_permissions"/> -->
+    </data>
+</odoo>

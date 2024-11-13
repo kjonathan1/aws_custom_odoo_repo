@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Menus  -->
+        <menuitem id="clinic" name="KOMBASSE" sequence="150" web_icon="clinic,static/description/icon.png"/>
+            <menuitem id="1" name="Consult. et Exam." parent="clinic"  sequence="5" action="action_clinicevaluation"/>
+            <menuitem id="clinicpatient" name="Patient" parent="clinic"  sequence="6" action="clinicpatient_action"/>
+            <!-- <menuitem id="2" name="Hospitalisation" parent="clinic"  sequence="10" action="clinicpatient_action"/> -->
+            <!-- <menuitem id="clinicrdv" name="Rendez-vous" parent="clinic"  sequence="15" action="action_clinicrdv"/> -->
+            <menuitem id="clinicdepense" name="Depenses" parent="clinic"  sequence="20" action="action_clinicdepense"/>
+
+            <!--
+            <menuitem id="clinicassurance" name="Assurance" parent="clinic" sequence="50" />
+                <menuitem id="11" name="Facture Assurance" parent="clinicassurance"  sequence="5" action="action_clinicfactureass"/>
+                <menuitem id="clinicpaiementass" name="Paiement Assurance" parent="clinicassurance"  sequence="10" action="action_clinicfactureasspaiement"/>
+                <menuitem id="clinicassurance11" name="Societes Assurance" parent="clinicassurance"  sequence="15" action="action_clinicassurance"/>
+            -->
+            <menuitem id="clinicreport" name="Rapports" parent="clinic" sequence="100" />
+                <menuitem id="clinicetat" name="Etats" parent="clinicreport"  sequence="5" action="action_clinic_etat"/>
+
+            <menuitem id="clinicconf" name="Configurations" parent="clinic" sequence="150" />
+                <menuitem id="clinicarticle" name="Prestations et produits" parent="clinicconf"  sequence="5" action="producttemplate_action"/>
+                <menuitem id="clinicmedecin" name="Medecin" parent="clinicconf"  sequence="11" action="clinicmedecin_action"/>
+                <menuitem id="clinicspecialitemedecin" name="Specialite Medecin" parent="clinicconf"  sequence="11" action="specialitemedecin_action"/>
+                
+                <menuitem id="clinicbanque" name="Banque" parent="clinicconf"  sequence="10" action="action_banque"/>
+
+     </data>
+
+</odoo>

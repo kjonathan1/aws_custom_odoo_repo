@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id ="etat_form_view" model="ir.ui.view">
+            <field name="name">clinic.etat.form</field>
+            <field name="model">clinic.etat</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="debut"/>
+                            <field name="fin"/>
+                        </group>
+                        <group>
+                                    
+                        </group>
+                    </sheet>
+                    <footer>
+                        <!-- <button name="reportbilan" string="Bilan general" type="object" class="btn-primary"/> -->
+                        <button name="reportevaluation" string="Bilan Evaluation" type="object" class="btn-primary"/>
+                        <button name="reportligneevaluation" string="Evaluation Details" type="object" class="btn-primary"/>
+                        <button name="reportdepenses" string="Bilan Depenses" type="object" class="btn-primary"/>
+                        <button name="reportmedecin" string="Bilan Medecins" type="object" class="btn-primary"/>
+                        <button name="reportpararticle" string="Bilan Par Article" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="action_clinic_etat">
+            <field name="name">Generer les états</field>
+            <field name="res_model">clinic.etat</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="help" type="html">
+              <p class = "o_view_nocontent_smiling_face"> Etats
+            </p>
+            </field>
+        </record> 
+ </data>
+</odoo>

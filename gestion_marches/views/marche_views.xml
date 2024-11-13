@@ -1,0 +1,314 @@
+<odoo>
+<!-- Vues pour les marches -->
+    <record id="view_marche_form" model="ir.ui.view">
+        <field name="name">gestion.marches.marche.form</field>
+        <field name="model">gestion_marches.marche</field>
+        <field name="arch" type="xml">
+            <form string="Marchés">
+                <sheet>
+                    <group>
+                        <!-- <field name="name"/> -->
+                        <field name="type_marche_id"/>
+                        <field name="institution_id"/>
+                        <field name="libelle"/>
+                        <!-- <field name="object_id"/>
+                        <field name="description"/>
+                        <field name="enveloppe_previsionnelle"/>
+                        <field name="devise_id"/>
+                        <field name="delais"/>
+                        <field name="contact"/>
+                        <field name="date_publication"/> -->
+                        <field name="date_expiration"/>
+                        <!-- <field name="domaine_id"/> -->
+                        <field name="localite"/>
+                        <field name="institution_domain_id"/>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marche_tree" model="ir.ui.view">
+        <field name="name">gestion.marches.marche.tree</field>
+        <field name="model">gestion_marches.marche</field>
+        <field name="arch" type="xml">
+            <tree string="Marches">
+                <!-- <field name="name"/> -->
+                <field name="type_marche_id"/>
+                <field name="institution_id"/>
+                <field name="libelle"/>
+                <!-- <field name="object_id"/> -->
+                <!-- <field name="description"/> -->
+                <!-- <field name="enveloppe_previsionnelle"/> -->
+                <!-- <field name="devise_id"/> -->
+                <!-- <field name="delais"/> -->
+                <!-- <field name="contact"/> -->
+                <!-- <field name="date_publication"/> -->
+                <field name="date_expiration"/>
+                <field name="domaine_id"/>
+                <!-- <field name="localite"/> -->
+                <field name="institution_domain_id"/>
+                <field name="attachment_ids" widget="many2many_binary"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_marche">
+        <field name="name">Marches</field>
+        <field name="res_model">gestion_marches.marche</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+
+
+    <!-- domaine -->
+    <record id="view_marche_domaine_form" model="ir.ui.view">
+        <field name="name">Domaine</field>
+        <field name="model">gestion_marches.domaine</field>
+        <field name="arch" type="xml">
+            <form string="Marché">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                       
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marche_domaine_tree" model="ir.ui.view">
+        <field name="name">Domaine</field>
+        <field name="model">gestion_marches.domaine</field>
+        <field name="arch" type="xml">
+            <tree string="Marchés">
+                <field name="name"/>
+             
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_domaine">
+        <field name="name">Domaine</field>
+        <field name="res_model">gestion_marches.domaine</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_domaine_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+    <!-- fin domaine -->
+
+    <!-- type_marche -->
+    <record id="view_marche_type_marche_form" model="ir.ui.view">
+        <field name="name">Type_marche</field>
+        <field name="model">gestion_marches.type_marche</field>
+        <field name="arch" type="xml">
+            <form string="Marché">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                       
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marche_type_marche_tree" model="ir.ui.view">
+        <field name="name">Type_marche</field>
+        <field name="model">gestion_marches.type_marche</field>
+        <field name="arch" type="xml">
+            <tree string="Marchés">
+                <field name="name"/>
+             
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_type_marche">
+        <field name="name">Type_marche</field>
+        <field name="res_model">gestion_marches.type_marche</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_type_marche_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+    <!-- type_marche -->
+
+    <!-- Institution -->
+    <record id="view_marche_intitution_form" model="ir.ui.view">
+        <field name="name">Institution</field>
+        <field name="model">gestion_marches.institution</field>
+        <field name="arch" type="xml">
+            <form string="Marché">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="institution_domain_id"/>
+                       
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_marche_institution_tree" model="ir.ui.view">
+        <field name="name">Institution</field>
+        <field name="model">gestion_marches.institution</field>
+        <field name="arch" type="xml">
+            <tree string="Marchés">
+                <field name="name"/>
+                <field name="institution_domain_id"/>
+             
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_institution">
+        <field name="name">Institution</field>
+        <field name="res_model">gestion_marches.institution</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_institution_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+<!-- Institution -->
+
+<!-- devise -->
+
+    <record id="view_marche_devise_form" model="ir.ui.view">
+            <field name="name">Devise</field>
+            <field name="model">gestion_marches.devise</field>
+            <field name="arch" type="xml">
+                <form string="Marché">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_marche_devise_tree" model="ir.ui.view">
+            <field name="name">Devise</field>
+            <field name="model">gestion_marches.devise</field>
+            <field name="arch" type="xml">
+                <tree string="Marchés">
+                    <field name="name"/>
+                
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_devise">
+            <field name="name">Devise</field>
+            <field name="res_model">gestion_marches.devise</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_marche_devise_tree"/>
+            <field name="help" type="html">
+                <p>Create new offer</p>
+            </field>
+        </record>
+<!-- devise -->
+
+
+<!-- Domaine_institution -->
+    <record id="view_marche_domaine_institution_tree" model="ir.ui.view">
+        <field name="name">Domaine</field>
+        <field name="model">gestion_marches.institution_domain</field>
+        <field name="arch" type="xml">
+            <tree string="Marchés">
+                <field name="name"/>
+             
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_institution_domain">
+        <field name="name">Domaine_institution</field>
+        <field name="res_model">gestion_marches.institution_domain</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_domaine_institution_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+<!-- domaine Domaine_institution -->
+
+
+<!-- objet -->
+    <record id="view_marche_object_tree" model="ir.ui.view">
+        <field name="name">Object</field>
+        <field name="model">gestion_marches.object</field>
+        <field name="arch" type="xml">
+            <tree string="Marchés">
+                <field name="name"/>
+             
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_object">
+        <field name="name">Object</field>
+        <field name="res_model">gestion_marches.object</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_marche_object_tree"/>
+        <field name="help" type="html">
+            <p>Create new offer</p>
+        </field>
+    </record>
+<!-- object -->
+
+<!-- Vues pour les utilisateurs     -->
+<record id="view_user_form" model="ir.ui.view">
+        <field name="name">gestion.marches.user.form</field>
+        <field name="model">gestion_marches.user</field>
+        <field name="arch" type="xml">
+            <form string="Users">
+                <sheet>
+                    <group>
+                        <field name="nom"/>
+                        <field name="prenom"/>
+                        <field name="adresse"/>
+                        <field name="mot_de_passe"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_user_tree" model="ir.ui.view">
+        <field name="name">gestion.marches.user.tree</field>
+        <field name="model">gestion_marches.user</field>
+        <field name="arch" type="xml">
+            <tree string="Users">
+                <field name="nom"/>
+                <field name="prenom"/>
+                <field name="adresse"/>
+                <field name="mot_de_passe"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_user">
+        <field name="name">Users</field>
+        <field name="res_model">gestion_marches.user</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_user_tree"/>
+        <field name="help" type="html">
+            <p>Create new user</p>
+        </field>
+    </record>
+
+    <!-- Vues pour les utilisateurs     -->
+
+
+
+</odoo>

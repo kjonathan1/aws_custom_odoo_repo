@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report 
+        id="reportrecucaisse"
+        model="clinic.evaluation"
+        string="Reçu caisse A5"
+        report_type="qweb-pdf"            
+        name="clinic.recucaisse"
+        file="clinic.recu_de_caisse"
+	paperformat="clinic.sheet_a5"
+    />
+
+    <report 
+        id="reportrecucaisseduplicata"
+        model="clinic.evaluation"
+        string="Reçu caisse Duplicata A5"
+        report_type="qweb-pdf"            
+        name="clinic.recucaisseduplicata"
+        file="clinic.recu_de_caisse_duplicata"
+		paperformat="clinic.sheet_a5"
+    />
+
+    <report 
+        id="reportfactureass"
+        model="clinic.factureass"
+        string="Factre Assurance"
+        report_type="qweb-pdf"            
+        name="clinic.factureass"
+        file="clinic.facture_assurance"
+    />
+
+    <report 
+            id="reportevaluation_id"
+            model="clinic.etat"
+            string="Report Evaluation"
+            report_type="qweb-pdf"
+            name="clinic.reportevaluation_template"
+            file="clinic.reportevaluation_template"
+            paperformat="clinic.sheet_a5"
+            
+    />
+    <report 
+            id="reportligneevaluation_id"
+            model="clinic.etat"
+            string="Report Evaluation -Details-"
+            report_type="qweb-pdf"
+            name="clinic.reportligneevaluation_template"
+            file="clinic.reportligneevaluation_template"
+            paperformat="clinic.sheet_a5"
+            
+    />
+    <report 
+            id="reportdepense_id"
+            model="clinic.etat"
+            string="Report Depense"
+            report_type="qweb-pdf"
+            name="clinic.reportdepense_template"
+            file="clinic.rreportdepense_template"
+            paperformat="clinic.sheet_a5"
+            
+    />
+    <report 
+            id="reportmedecin_id"
+            model="clinic.etat"
+            string="Report Medecin"
+            report_type="qweb-pdf"
+            name="clinic.reportmedecin_template"
+            file="clinic.rreportmedecin_template"
+            paperformat="clinic.sheet_a5"
+            
+    />
+
+
+    <report 
+            id="reportpararticle_id"
+            model="clinic.etat"
+            string="Report Par Article"
+            report_type="qweb-pdf"
+            name="clinic.reportbilanpararticle_template"
+            file="clinic.reportbilanpararticle_template"
+            paperformat="clinic.sheet_a5"
+            
+    />
+    <!-- ordonance -->
+    <report 
+            id="reportordonance_id"
+            model="clinic.evaluation"
+            string="Ordonance"
+            report_type="qweb-pdf"
+            name="clinic.reportordonance"
+            file="clinic.reportordonance"
+            paperformat="clinic.sheet_a5"
+            
+    />
+
+    <report 
+            id="reportobservation_id"
+            model="clinic.patient"
+            string="Observation Médicale"
+            report_type="qweb-pdf"
+            name="clinic.reportobservationmedicale"
+            file="clinic.reportobservationmedicale"
+    />
+</odoo>

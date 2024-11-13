@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/clinic/static/src/css/clinic.css"/>
+		</xpath>
+    </template>
+
+    <template id="reportevaluation_template">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="5"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            
+				
+                <t t-call="web.basic_layout">
+                    <div class="page container">
+                        <div><img src="clinic/static/img/entete.png" width="35%" /> </div>
+                       
+                        <div class="card">
+                            <div class="card-header">
+                                <strong><h3>Bilan des prestation</h3></strong>
+                            </div>
+                        </div>
+                        <br/> 
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 25%">
+                                    <!-- <span>Assurance:</span> <strong><span t-esc="o.assurance.name" /></strong> <br/>
+                                    <span>Télephone:</span> <strong><span t-esc="o.assurance.phone" /></strong> -->
+                                </td>
+                                <td style="width: 75%">
+                                    <span>Periode du :</span> <strong><span t-esc="data['debut']"/></strong> au <strong><span t-esc="data['fin']"/></strong><br/>
+                                    <!-- <span>Etat:</span><strong><span t-field="o.state"/></strong> -->
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th><strong>Ref</strong></th>
+                                    <th><strong>date</strong></th>
+                                    <th><strong>Prestation</strong></th>
+                                    <th><strong>Paiement</strong></th>
+                                    <th><strong>Agent</strong></th>
+                                    <th><strong>Montant</strong></th>
+                                    <th><strong>Assurance</strong></th>
+                                    <th><strong>Patient</strong></th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="docs" t-as="l">
+                                    <tr>
+                                        <td><span t-esc="l['name']" /></td>
+                                        <td><span t-esc="l['date']" /> </td>
+                                        <td><span t-esc="l['typeevaluation']" /> </td>
+                                        <td><span t-esc="l['typepayement']" /> </td>
+                                       <td><span t-esc="l['user']" /> </td> 
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l['montant']).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l['montantass']).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l['montantpatient']).replace(',', ' ').replace('.', ',')"/></td> 
+                                                          
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="5"><strong>Total</strong></td>
+                                    <td align="right"><strong><span t-esc="'{:,.0f}'.format(montant).replace(',', ' ').replace('.', ',')"/></strong></td>
+                                    <td align="right"><strong><span t-esc="'{:,.0f}'.format(montantass).replace(',', ' ').replace('.', ',')"/></strong></td>
+                                    <td align="right"><strong><span t-esc="'{:,.0f}'.format(montantpatient).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <br/>
+                        
+                        <table class="table table-bordered">
+                            <tr>
+                                <td><strong>Espece</strong></td>
+                                <td align="right"><strong><span t-esc="'{:,.0f}'.format(mt_espece).replace(',', ' ').replace('.', ',')"/></strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Orange-money</strong></td>
+                                <td align="right"><strong><span t-esc="'{:,.0f}'.format(mt_om).replace(',', ' ').replace('.', ',')"/></strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cheque</strong></td>
+                                <td align="right"><strong><span t-esc="'{:,.0f}'.format(mt_cheque).replace(',', ' ').replace('.', ',')"/></strong></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Autre</strong></td>
+                                <td align="right"><strong><span t-esc="'{:,.0f}'.format(mt_autre).replace(',', ' ').replace('.', ',')"/></strong></td>
+                            </tr>
+                        </table>
+                        <br/>
+                
+                        <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong></strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong>Service Comptabilite</strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong>Contacts clinique: 65.67.10.10 / 70.00.10.30</strong><br/>
+                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        
+    </template>
+</odoo>
+
+
+

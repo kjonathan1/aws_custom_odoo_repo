@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- depense -->
+    <record id="clinicdepense_view_form" model="ir.ui.view">
+        <field name="name">clinic.depense.form</field>
+        <field name="model">clinic.depense</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" invisible="state not in ('valide', 'annule')" />
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="antidate"/>
+                        <field name="date"/>
+                        <field name="name"/>
+                        <!-- <field name="commentaire"/> -->
+                    </group>
+                    <group>
+                        <field name="montant"/>
+                        <field name="motif"/>
+                        <field name="type"/>
+                        <field name="banque"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinicdepense_tree_view" model="ir.ui.view">
+            <field name="name">clinic.depense.tree</field>
+            <field name="model">clinic.depense</field>
+            <field name="arch" type="xml">
+                <tree string="Depense">
+                    <field name="antidate"/>
+                    <field name="date"/>
+                    <field name="type"/>
+                    <field name="name"/>
+                    <field name="montant"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicdepense">
+        <field name="name">Depenses</field>
+        <field name="res_model">clinic.depense</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicdepense_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle depense</p>
+        </field>
+    </record>
+
+    <!-- rendez-vous -->
+    <record id="clinicrdv_view_form" model="ir.ui.view">
+        <field name="name">clinic.rdv.form</field>
+        <field name="model">clinic.rdv</field>
+        <field name="arch" type="xml">
+            <form>
+            <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" invisible="state not in ('valide', 'annule')" />
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <!-- <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="faire" string="Realiser RDV" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header> -->
+               <sheet>
+                    <group>
+                        <field name="date"/>
+                        <field name="daterdv"/>
+                        <field name="medecin"/>
+                        <field name="patient"/>
+                        <field name="motif"/>
+                        <field name="commentaire"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinicrdv_tree_view" model="ir.ui.view">
+            <field name="name">clinic.rdv.tree</field>
+            <field name="model">clinic.rdv</field>
+            <field name="arch" type="xml">
+                <tree string="Rendez-vous">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="daterdv"/>
+                    <field name="medecin"/>
+                    <field name="patient"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicrdv">
+        <field name="name">Rendez-vous</field>
+        <field name="res_model">clinic.rdv</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicrdv_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau Rendez-vous</p>
+        </field>
+    </record>
+
+    <!-- evluation -->
+    <record id="clinicevaluation_form_view" model="ir.ui.view">
+	    <field name="name">clinic.evaluation.form</field>
+        <field name="model">clinic.evaluation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" invisible="state not in ('valide', 'annule')" />
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary"  invisible="state not in ('brouillon', 'annule')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+                <!--
+                <header>
+                    <field name="stateass" widget="statusbar" statusbar_visible="brouillon,valide,regler,annule"/>
+                </header>
+                -->
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="state" invisible='1'/>  
+                            <field name="name"/>
+                            <!-- <field name="antidate"/> -->
+                            <field name="date" readonly="state not in ('brouillon')" />
+                            <field name="patient" readonly="state not in ('brouillon')"/>
+                            <field name="telephone" readonly="state not in ('brouillon')"/>
+                            <field name="reference"/>
+                            <field name="ndossier"/>
+                            <field name="typeevaluation" readonly="state not in ('brouillon')"/>
+                            <field name="typepayement" readonly="state not in ('brouillon')"/>            
+                        </group>
+                        <group>
+						    <field name="assurance" readonly="state not in ('brouillon')"/>
+                            <field name="numficheas" readonly="state not in ('brouillon')"/>
+                            <field name="montant"/>
+                            <field name="tauxass" readonly="state not in ('brouillon')"/>
+                            <field name="montantass" readonly="state not in ('brouillon')"/>
+                            <field name="montantpatient"/>
+                        </group>
+                        <group invisible="[('typeevaluation', '!=', 'intervention')]" > 
+                            <!-- attrs="{'invisible': [('typeevaluation', '!=', 'intervention')]}" -->
+                            <field name="ko" readonly="state not in ('brouillon')"/>
+							<field name="valeur_ko" readonly="state not in ('brouillon')"/>
+							<field name="coeff" readonly="state not in ('brouillon')"/>
+                            <!-- <button name="preremplir" string="Auto-details" type="object" class="btn-primary" attrs="{'invisible': [('state', '!=', 'brouillon')]}" /> -->
+                        </group>
+                       
+                    </group>
+                </sheet>
+                    <notebook>
+                        <page string="Details paiements">
+                            <field name="ligne_evaluation"  readonly="state not in ('brouillon')">
+                                <tree string="Details consultations" editable="bottom">
+									<field name="article" />
+									<field name="medecins"  widget="many2many_tags" options="{'no_create_edit': True}"/>
+									<field name="qte" />
+									<field name="pu" />
+									<field name="montant" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <!-- <page string="Details consultations">
+                            <field name="ligne_carnet"  >
+                                <tree string="Details consultations" editable="bottom">
+									<field name="date" />
+									<field name="maladies"  widget="many2many_tags" options="{'no_create_edit': True}"/>
+									<field name="temperature" />
+									<field name="pression_art" />
+									<field name="poul" />
+									<field name="signe_physique" />
+									<field name="signe_biologique" />
+									<field name="commentaire" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <page string="Details ordonances">
+                            <field name="ligne_ordonance"  >
+                                <tree string="Details ordonances" editable="bottom">
+                                    <field name="date" />
+									<field name="medicament" />
+									<field name="potiologie" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <page string="Details examens">
+                            <field name="ligne_examen" >
+                                <tree string="Details examens" editable="bottom">
+									<field name="date" />
+									<field name="article" />
+									<field name="stateexam" />
+									<field name="statepaye" />
+									<field name="resultat" />
+								</tree>
+                            </field>
+                        </page> -->
+                    </notebook>
+                
+            </form>
+	    </field>
+	</record>
+    <record id="clinicevaluation_tree_view" model="ir.ui.view">
+            <field name="name">clinic.evaluation.tree</field>
+            <field name="model">clinic.evaluation</field>
+            <field name="arch" type="xml">
+                <tree string="Evaluation">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="patient"/>
+                    <field name="ndossier"/>
+                    <field name="typeevaluation"/>
+                    <field name="montant" sum="montant"/>
+                    <field name="state"/>
+                    <!-- <field name="stateass"/> -->
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicevaluation">
+        <field name="name">Consultations</field>
+        <field name="res_model">clinic.evaluation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicevaluation_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle Consultation</p>
+        </field>
+    </record>
+
+
+   
+
+</odoo>
