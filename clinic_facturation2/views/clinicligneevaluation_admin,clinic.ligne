@@ -1,0 +1,5 @@
+clinicfactureasspaiement_admin,clinic.factureasspaiement.admin,model_clinic_factureasspaiement,group_clinic_admin,1,1,1,1
+clinicfactureasspaiement_gestionnaire,clinic.factureasspaiement.gestionnaire,model_clinic_factureasspaiement,group_clinic_gestionnaire,1,1,1,0
+clinicfactureasspaiement_caisse,clinic.factureasspaiement.caisse,model_clinic_factureasspaiement,group_clinic_caisse,1,0,0,0
+
+

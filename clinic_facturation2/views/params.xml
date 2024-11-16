@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- product template -->
+    
+
+
+    <record id="product_inherit_view" model="ir.ui.view">
+        <field name="name">product.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='general_information']/group[1]" position="after">
+                <group>
+                    <field name="prix"/>
+                    <field name="prixass"/>
+                    <field name="quantite"/>
+                </group>
+                
+            </xpath>
+            <!-- <field name="taxes_id" position="replace">
+                <field name="taxes_id" invisible="1"/>
+            </field>  -->
+            <field name="list_price" position="replace">
+                <field name="list_price" invisible="1"/>
+            </field> 
+            <field name="standard_price" position="replace">
+                <field name="standard_price" invisible="1"/>
+            </field>  
+        </field>
+    </record>
+
+    <record id="producttemplate_view_tree" model="ir.ui.view">
+            <field name="name">product.template.tree</field>
+            <field name="model">product.template</field>
+            <field name="arch" type="xml">
+                <tree string="Article">
+                    <field name="name"/>
+                    <field name="default_code" />
+                    <field name="categ_id"/>
+                    <field name="prix"/>
+                    <field name="prixass"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="producttemplate_action">
+        <field name="name">Articles</field>
+        <field name="res_model">product.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="producttemplate_view_tree"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouvel article</p>
+        </field>
+    </record>
+
+    <!--    patient-->
+    <record id="clinicpatient_view_form" model="ir.ui.view">
+        <field name="name">clinic.patient.form</field>
+        <field name="model">clinic.patient</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <field name="reference" readonly="1" />
+                        <field name="name"/>
+                        <field name="telephone"/>
+                        <field name="ndossier"/>
+                        <field name="sexe"/>
+						<field name="alergie"/>
+                    </group>
+                    <group>
+                        <field name="assurance" />
+                        <field name="tauxass"/>
+                        <field name="email"/>
+                        <field name="datenaissance"/>
+                        <field name="age"/>
+                        <field name="lieunaissance"/>
+                    </group>
+                </sheet>
+                <notebook>
+                        <page string="Motif de consultation">
+                            <field name="ligne_evaluation"  readonly="1">
+                                <tree string="Motif de consultation" editable="bottom">
+									<field name="date" />
+									<field name="article" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <page string="Details consultations">
+                            <field name="ligne_carnet">
+                                <tree string="Details consultations" editable="bottom">
+									<field name="date" />
+									<field name="maladies"  widget="many2many_tags"/>
+									<field name="temperature" />
+									<field name="pression_art" />
+									<field name="commentaire" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <page string="Details ordonances">
+                            <field name="ligne_ordonance"  >
+                                <tree string="Details ordonances" editable="bottom">
+                                    <field name="date" />
+									<field name="medicament" />
+									<field name="potiologie" />
+                            	</tree>
+                            </field>
+                        </page>
+                        <page string="Details examens">
+                            <field name="ligne_examen" >
+                                <tree string="Details examens" editable="bottom">
+									<field name="date" />
+									<field name="article" />
+									<field name="stateexam" />
+									<field name="statepaye" />
+									<field name="resultat" />
+								</tree>
+                            </field>
+                        </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinicpatient_tree_view" model="ir.ui.view">
+            <field name="name">clinic.patient.tree</field>
+            <field name="model">clinic.patient</field>
+            <field name="arch" type="xml">
+                <tree string="Patient">
+                    <field name="reference"/>
+                    <field name="ndossier"/>
+                    <field name="name"/>
+                    <field name="telephone"/>
+                    <field name="sexe"/>
+                    <field name="age"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="clinicpatient_action">
+        <field name="name">Patients</field>
+        <field name="res_model">clinic.patient</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicpatient_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau patient</p>
+        </field>
+    </record>
+
+    <!--    medecin -->
+    <record id="clinicmedecin_view_form" model="ir.ui.view">
+        <field name="name">clinic.medecin.form</field>
+        <field name="model">clinic.medecin</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="telephone"/>
+                        <field name="specialite"/>
+                    </group>
+                 </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <record id="clinicmedecin_tree_view" model="ir.ui.view">
+            <field name="name">clinic.medecin.tree</field>
+            <field name="model">clinic.medecin</field>
+            <field name="arch" type="xml">
+                <tree string="Medecin">
+                    <field name="name"/>
+                    <field name="telephone"/>
+                    <field name="specialite"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="clinicmedecin_action">
+        <field name="name">Medecins</field>
+        <field name="res_model">clinic.medecin</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicmedecin_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau Medecin</p>
+        </field>
+    </record>
+
+    <!-- specialite medecin -->
+    <record id="specialitemedecin_tree_view" model="ir.ui.view">
+        <field name="name">clinic.specialitemedecin.tree</field>
+        <field name="model">clinic.specialitemedecin</field>
+        <field name="arch" type="xml">
+            <tree string="specialite medecin">
+                <field name="name"/>  
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="specialitemedecin_action">
+        <field name="name">specialite medecins</field>
+        <field name="res_model">clinic.specialitemedecin</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="specialitemedecin_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle specialite medecin</p>
+        </field>
+    </record>
+
+    <!-- banque -->
+    <record id="banque_tree_view" model="ir.ui.view">
+        <field name="name">clinic.banque.tree</field>
+        <field name="model">clinic.banque</field>
+        <field name="arch" type="xml">
+            <tree string="Banque">
+                <field name="name"/>  
+            </tree>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_banque">
+        <field name="name">Banque</field>
+        <field name="res_model">clinic.banque</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="banque_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle banque</p>
+        </field>
+    </record>
+
+</odoo>

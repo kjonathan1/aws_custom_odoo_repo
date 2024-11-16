@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- societe d'assurance -->
+    <record id="clinicassurance_view_form" model="ir.ui.view">
+        <field name="name">clinic.assurance.form</field>
+        <field name="model">clinic.assurance</field>
+        <field name="arch" type="xml">
+            <form>
+               <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="phone"/>
+                        <field name="adresse"/>
+                        <field name="ifu"/>
+                        <field name="rccm"/>
+                        <field name="regime"/>
+                        <field name="division"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="clinicassurance_tree_view" model="ir.ui.view">
+            <field name="name">clinic.assurance.tree</field>
+            <field name="model">clinic.assurance</field>
+            <field name="arch" type="xml">
+                <tree string="Assurance">
+                    <field name="name"/>
+                    <field name="phone"/>
+                    <field name="adresse"/>
+                    <field name="ifu"/>
+                    <field name="rccm"/>
+                    <field name="regime"/>
+                    <field name="division"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicassurance">
+        <field name="name">Assurances</field>
+        <field name="res_model">clinic.assurance</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicassurance_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle assurance</p>
+        </field>
+    </record>
+
+    <!-- Facture assurance -->
+    <record id="clinicfactureass_view_form" model="ir.ui.view">
+        <field name="name">clinic.factureass.form</field>
+        <field name="model">clinic.factureass</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- <header>
+                    <button name="preparer_facture" string="Generer Facture" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="faire" string="Realiser RDV" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,paye,annule"/>
+                </header> -->
+               <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="debut"/>
+                        <field name="fin"/>
+                    </group>
+                     <group>
+                        <field name="assurance"/>
+                        <field name="typeevaluation"/>
+                        <field name="montantth"/>
+                        <field name="montantnet"/>
+                        <field name="commentaire"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Details prestations">
+                            <field name="ligne_factureass" >
+                             <!-- attrs="{'readonly': [('state', '!=', 'brouillon')]}" -->
+                                <tree string="Details prestations">
+									<field name="evaluation" />
+                                    <field name="patient" />
+									<field name="telephone" />
+									<field name="reference" />
+									<field name="numficheas" />
+									<field name="prestation" />
+                                    <field name="montant" />
+                                    <field name="montantass" />
+                                    <field name="tauxass" />
+                            	</tree>
+                            </field>
+                    </page>
+                    <page string="Details paiements">
+                            <field name="ligne_factureasspaie" >
+                             <!-- attrs="{'readonly': [('state', '!=', 'brouillon')]}" -->
+                                <tree string="Details paiements" editable="bottom">
+									<field name="date" />
+									 <field name="montant" />
+                                    <field name="reference" />
+                            	</tree>
+                            </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+    <record id="clinicfactureass_tree_view" model="ir.ui.view">
+            <field name="name">clinic.factureass.tree</field>
+            <field name="model">clinic.factureass</field>
+            <field name="arch" type="xml">
+                <tree string="Facture assurance">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="debut"/>
+                    <field name="fin"/>
+                    <field name="assurance"/>
+                    <field name="typeevaluation"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicfactureass">
+        <field name="name">Facture assurance</field>
+        <field name="res_model">clinic.factureass</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicfactureass_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter une nouvelle facture assurance</p>
+        </field>
+    </record>
+
+    <!-- Paiement Facture assurance -->
+    <record id="clinicfactureasspaiement_view_form" model="ir.ui.view">
+        <field name="name">clinic.factureasspaiement.form</field>
+        <field name="model">clinic.factureasspaiement</field>
+        <field name="arch" type="xml">
+            <form>
+                <!-- <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" states="brouillon"/>
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" states="valide"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" states="valide"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header> -->
+                <header>
+                    <button name="valider" string="Valider" type="object" class="btn-primary" invisible="state not in ('valide', 'annule')" />
+                    <button name="brouillon" string="Remettre en brouillon" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <button name="annuler" string="Annuler" type="object" class="btn-primary" invisible="state not in ('brouillon', 'annule')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="brouillon,valide,annule"/>
+                </header>
+               <group>
+                    <group>
+                        <field name="name"/>
+                         <field name="assurance"/>
+                        <field name="date"/>
+                        <field name="factures" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                        <field name="montantth"/>
+                    </group>
+                     <group>
+                        <field name="montantnet"/>
+                        <field name="reference"/>
+                        <field name="commentaire"/>
+                        <field name="banque"/>
+                       
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="clinicfactureasspaiement_tree_view" model="ir.ui.view">
+            <field name="name">clinic.factureasspaiement.tree</field>
+            <field name="model">clinic.factureasspaiement</field>
+            <field name="arch" type="xml">
+                <tree string="Paiement assurance">
+                    <field name="name"/>
+                    <field name="date"/>
+                   <field name="assurance"/>
+                    <field name="montantnet"/>
+                    <field name="reference"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_clinicfactureasspaiement">
+        <field name="name">Paiement assurance</field>
+        <field name="res_model">clinic.factureasspaiement</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="clinicfactureasspaiement_tree_view"/>
+        <field name="help" type="html">
+            <p>Ajouter un nouveau paiement de facture d'assurance</p>
+        </field>
+    </record>
+
+
+
+   
+
+</odoo>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/clinic/static/src/css/clinic.css"/>
+		</xpath>
+    </template>
+
+    <template id="reportordonance">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="5"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            <t t-foreach="docs" t-as="o">
+				<t t-set="o" t-value="o.with_context(lang=user.lang)" />
+                <t t-call="web.basic_layout">
+                    <div class="page container">
+                        <div><img src="clinic/static/src/img/entete.png" width="100%" /> </div>
+                        <br/> <br/> 
+                       
+                        <div class="card">
+                            <div class="card-header">
+                                <strong><h3>ORDONANCE N° <span t-esc="o.name" /></h3></strong>
+                            </div>
+                        </div>
+                        <br/> 
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 50%">
+                                    <span>Patient:</span> <strong><span t-esc="o.patient.name" /></strong> <br/>
+                                    <span>Télephone:</span> <strong><span t-esc="o.patient.telephone" /></strong>
+                                </td>
+                                <td style="width: 50%">
+                                    <span>Date:</span> <strong><span t-field="o.antidate"/></strong><br/>
+                                    <!-- <span>Etat:</span><strong><span t-field="o.state"/></strong> -->
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Medicaments</th>
+                                    <th>Posiologie</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.ligne_ordonance" t-as="l">
+                                    <tr>
+                                        <td><span t-esc="l.medicament.name" /></td>
+                                        <td><span t-esc="l.potiologie.name" /> </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+            
+                        <br/>
+                        <br/>
+                        
+                       
+                
+                        <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong>CLIENT(E)</strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong>Medecin Traitant</strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong>Contacts clinique: 65.67.10.10 / 70.00.10.30</strong><br/>
+                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+

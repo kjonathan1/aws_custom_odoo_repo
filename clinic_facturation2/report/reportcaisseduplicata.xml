@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="minimal_layout_inherit" inherit_id="web.minimal_layout">
+		<xpath expr="//head" position="inside">
+			<link rel='stylesheet' href="/clinic/static/src/css/clinic.css"/>
+		</xpath>
+    </template>
+
+    <template id="recucaisseduplicata">
+        <t t-call="web.html_container">
+            <t t-set="data_report_margin_top" t-value="0"/>
+            <t t-set="data_report_margin_bottom" t-value="4"/>
+            <t t-set="data_report_header_spacing" t-value="2"/>
+            <t t-set="data_report_dpi" t-value="110"/>
+
+            <t t-foreach="docs" t-as="o">
+				<t t-set="o" t-value="o.with_context(lang=user.lang)" />
+                <t t-call="web.basic_layout">
+                    <div class="page container">
+                        <div><img src="clinic/static/src/img/entete.png" width="35%" /> </div>
+                       
+                        <div class="card">
+                            <div class="card-header">
+                                <strong><h3>Reçu de Paiement N° <span t-esc="o.name" /></h3></strong>
+                            </div>
+                        </div>
+                        <br/> 
+                        <table width="100%">
+                            <tr>
+                                <td style="width: 50%">
+                                    <span>Patient:</span> <strong><span t-esc="o.patient.name" /></strong> <br/>
+                                    <span>Télephone:</span> <strong><span t-esc="o.patient.telephone" /></strong>
+                                </td>
+                                <td style="width: 50%">
+                                    <span>Date:</span> <strong><span t-field="o.antidate"/></strong><br/>
+                                    <span>Etat:</span><strong><span t-field="o.state"/></strong>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Prestation</th>
+                                    <th>Quantité</th>
+                                    <th>Prix unitaire</th>
+                                    <th>Montant</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="o.ligne_evaluation" t-as="l">
+                                    <tr>
+                                        <td><span t-esc="l.article.default_code" /></td>
+                                        <td><span t-esc="l.article.name" /> </td>
+                                        <td align="center"><span t-esc="'{:,.0f}'.format(l.qte).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.pu).replace(',', ' ').replace('.', ',')"/></td>
+                                        <td align="right"><span t-esc="'{:,.0f}'.format(l.montant).replace(',', ' ').replace('.', ',')"/></td>                    
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="3"><strong>Total</strong></td>
+                                    <td colspan="2" align="right"><strong><span t-esc="'{:,.0f}'.format(o.montant).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                                <t t-if="o.assurance!=Faux">
+                                    <tr>
+                                        <td colspan="3"><strong>Total Assurance (<span t-esc="o.assurance.name"/> - <span t-esc="'{:,.0f}'.format(o.tauxass).replace(',', ' ').replace('.', ',')"/> %)</strong></td>
+                                        <td colspan="2" align="right"><span t-esc="'{:,.0f}'.format(o.montantass).replace(',', ' ').replace('.', ',')"/></td>                    
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td colspan="3" ><strong>Total Patient</strong></td>
+                                    <td colspan="2" align="right"><strong><span t-esc="'{:,.0f}'.format(o.montantpatient).replace(',', ' ').replace('.', ',')"/></strong></td>                    
+                                </tr>
+                            </tbody>
+                        </table>
+            
+                        <br/>
+                        <div>Arrêté, le présent reçu à la somme de  <span t-esc="user.company_id.compute_amount_text(o.montantpatient)" /> (<span t-esc="'{:,.0f}'.format(o.montantpatient).replace(',', ' ').replace('.', ',')"/>) FCFA</div>
+                        <br/>
+                        
+                        <div><i>NB: Les Reçus de consultations sont valables pour dix (10) jours.</i></div>
+                        <br/>
+                
+                        <table width="100%">
+                            <tr>
+                                <td align="center" style="width: 50%"><strong>CLIENT(E)</strong> <br/></td>
+                                <td align="center" style="width: 50%">
+                                    <strong>CAISSIER(E)</strong>
+                                    <br/><br/><br/>
+                                    <span t-esc="user.name"/><br/>
+                                    <strong>Contacts clinique: 25.40.95.01 / 25.45.95.01</strong><br/>
+                                    <span t-esc="datetime.datetime.now().strftime('%d/%m/%Y')"/><br/>
+                                    <strong>DUPLICATA</strong>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <div class="footer o_standard_footer" style="border-top: 1px solid black;">
+                            <div class="row text-center">
+                                <div class="col col-12 text-center">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">Page:</li>
+                                        <li class="list-inline-item">
+                                            <span class="page"/>
+                                        </li>
+                                        <li class="list-inline-item">/</li>
+                                        <li class="list-inline-item">
+                                            <span class="topage"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
+
